@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Beautiful God Ministry International - A place of worship and spiritual growth">
+    <title>Beautiful God Ministry International</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a4b8c;
+            --gold: #d4af37;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --font-base: clamp(1rem, 0.34vw + 0.91rem, 1.19rem);
+            --font-heading: clamp(1.5rem, 0.7vw + 1rem, 2.8rem);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-size: var(--font-base);
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: var(--font-heading);
+            font-weight: 700;
+            color: var(--gold);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .header-logo {
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 200px;
+            margin-right: 1rem;
+            object-fit: contain;
+        }
+
+        @media (max-width: 600px) {
+            .header-logo {
+                max-height: 120px;
+            }
+        }
+
+        @media (min-width: 601px) and (max-width: 900px) {
+            .header-logo {
+                max-height: 150px;
+            }
+        }
+
+        @media (min-width: 901px) {
+            .header-logo {
+                max-height: 200px;
+            }
+        }
+
+        .mobile-menu-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            display: block;
+            transition: transform 0.2s ease;
+        }
+
+        .mobile-menu-btn:hover {
+            transform: scale(1.1);
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            height: 100vh;
+            background-color: var(--primary);
+            transition: right 0.3s ease;
+            padding: 2rem;
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        nav.active {
+            right: 0;
+        }
+
+        .close-menu {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .close-menu:hover {
+            transform: rotate(90deg);
+        }
+
+        .nav-links {
+            margin-top: 3rem;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-bottom: 1.5rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            display: block;
+            padding: 0.5rem 0;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .donate-btn {
+            background-color: var(--gold);
+            color: var(--primary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .donate-btn:hover {
+            background-color: #e8c252;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .hero {
+            position: relative;
+            height: 60vh;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 1rem;
+            overflow: hidden;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5));
+        }
+
+        .hero-background img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-content h1 {
+            font-size: var(--font-heading);
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .cta-btn {
+            background-color: var(--gold);
+            color: var(--primary);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .cta-btn:hover {
+            background-color: #e8c252;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .section-title {
+            text-align: center;
+            margin: 3rem 0;
+            font-size: var(--font-heading);
+            color: var(--primary);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--gold);
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        .ministries {
+            padding: 0 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex: 1;
+        }
+
+        .ministries-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .ministries-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .ministries-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (min-width: 1440px) {
+            .ministries-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .ministry-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .ministry-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+
+        .ministry-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .ministry-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .ministry-content {
+            padding: 1.5rem;
+        }
+
+        .ministry-content h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .events {
+            padding: 4rem 1rem;
+            background-color: rgba(26, 75, 140, 0.05);
+        }
+
+        .events-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .events-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .events-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .event-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+
+        .event-image {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .event-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .event-card:hover .event-image img {
+            transform: scale(1.05);
+        }
+
+        .event-date {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background-color: var(--gold);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .event-content {
+            padding: 1.5rem;
+        }
+
+        .event-content h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .event-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .event-time, .event-location {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--dark);
+        }
+
+        .event-time i, .event-location i {
+            color: var(--gold);
+        }
+
+        .event-description {
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+        }
+
+        .upcoming-events {
+            padding: 4rem 1rem;
+            background-color: white;
+        }
+
+        .upcoming-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .upcoming-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .upcoming-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .upcoming-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .upcoming-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .upcoming-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+
+        .upcoming-image {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .upcoming-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .upcoming-card:hover .upcoming-image img {
+            transform: scale(1.05);
+        }
+
+        .upcoming-date {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background-color: var(--gold);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .upcoming-content {
+            padding: 1.5rem;
+        }
+
+        .upcoming-content h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .upcoming-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .upcoming-time, .upcoming-location {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--dark);
+        }
+
+        .upcoming-time i, .upcoming-location i {
+            color: var(--gold);
+        }
+
+        .upcoming-description {
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+        }
+
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 2rem 1rem;
+            margin-top: auto;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .footer-links {
+                flex-direction: row;
+                justify-content: center;
+            }
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--gold);
+            transform: translateY(-3px);
+        }
+
+        @media (min-width: 1024px) {
+            .mobile-menu-btn {
+                display: none;
+            }
+
+            nav {
+                position: static;
+                width: auto;
+                height: auto;
+                background: transparent;
+                padding: 0;
+            }
+
+            .close-menu {
+                display: none;
+            }
+
+            .nav-links {
+                display: flex;
+                margin: 0;
+                gap: 1.5rem;
+                align-items: center;
+            }
+
+            .nav-links li {
+                margin: 0;
+                position: relative;
+            }
+
+            .nav-links a {
+                padding: 0.5rem 1rem;
+            }
+
+            .donate-btn {
+                margin: 0 0 0 1.5rem;
+            }
+
+            .has-dropdown:hover .dropdown {
+                display: block;
+                animation: fadeIn 0.3s ease;
+            }
+
+            .hero {
+                height: 80vh;
+                justify-content: flex-start;
+                text-align: left;
+                padding: 0 5rem;
+            }
+
+            .hero-content {
+                max-width: 600px;
+            }
+        }
+
+        @media (min-width: 1440px) {
+            .hero {
+                padding: 0 10rem;
+            }
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 100%;
+            background-color: white;
+            min-width: 250px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            border-radius: 0 0 5px 5px;
+            z-index: 100;
+        }
+
+        .dropdown a {
+            color: var(--dark);
+            padding: 0.75rem 1rem;
+            display: block;
+            border-bottom: 1px solid #eee;
+        }
+
+        .dropdown a:hover {
+            background-color: #f5f5f5;
+            color: var(--primary);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #121212;
+                color: #f1f1f1;
+            }
+
+            .ministry-card, .event-card, .upcoming-card {
+                background-color: #1e1e1e;
+                color: #f1f1f1;
+            }
+
+            .ministry-content h3, .event-content h3, .upcoming-content h3 {
+                color: var(--gold);
+            }
+
+            .dropdown {
+                background-color: #2d2d2d;
+            }
+
+            .dropdown a {
+                color: #f1f1f1;
+                border-bottom-color: #444;
+            }
+
+            .dropdown a:hover {
+                background-color: #3d3d3d;
+                color: var(--gold);
+            }
+
+            .event-meta, .upcoming-meta,
+            .event-description, .upcoming-description {
+                color: #f1f1f1;
+            }
+            
+            .upcoming-events {
+                background-color: #1e1e1e;
+            }
+        }
+
+        [data-theme="dark"] {
+            background-color: #121212;
+            color: #f1f1f1;
+        }
+
+        [data-theme="dark"] .ministry-card,
+        [data-theme="dark"] .event-card,
+        [data-theme="dark"] .upcoming-card {
+            background-color: #1e1e1e;
+        }
+
+        [data-theme="dark"] .ministry-content h3,
+        [data-theme="dark"] .event-content h3,
+        [data-theme="dark"] .upcoming-content h3 {
+            color: var(--gold);
+        }
+
+        [data-theme="dark"] .dropdown {
+            background-color: #2d2d2d;
+        }
+
+        [data-theme="dark"] .dropdown a {
+            color: #f1f1f1;
+            border-bottom-color: #444;
+        }
+
+        [data-theme="dark"] .dropdown a:hover {
+            background-color: #3d3d3d;
+            color: var(--gold);
+        }
+
+        [data-theme="dark"] .event-meta,
+        [data-theme="dark"] .upcoming-meta,
+        [data-theme="dark"] .event-description,
+        [data-theme="dark"] .upcoming-description {
+            color: #f1f1f1;
+        }
+        
+        [data-theme="dark"] .upcoming-events {
+            background-color: #1e1e1e;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <img
+                src="./logo-removebg-preview_gihvpx_c_scale,w_382.png"
+                srcset="
+                    ./logo/logo-removebg-preview_gihvpx_c_scale,w_200.png 200w,
+                    ./logo/logo-removebg-preview_gihvpx_c_scale,w_288.png 288w,
+                    ./logo/logo-removebg-preview_gihvpx_c_scale,w_357.png 357w,
+                    ./logo/logo-removebg-preview_gihvpx_c_scale,w_382.png 382w"
+                sizes="(max-width: 600px) 150px, (max-width: 900px) 200px, 250px"
+                alt="Beautiful God Ministry International Logo"
+                class="header-logo"
+                loading="eager"
+            >
+            <div class="logo">BEAUTIFUL GOD MINISTRY INTERNATIONAL</div>
+            <button class="mobile-menu-btn" aria-label="Open menu">☰</button>
+            <nav id="mainNav">
+                <button class="close-menu" aria-label="Close menu">×</button>
+                <ul class="nav-links">
+                    <li><a href="Index.html">Home</a></li>
+                    <li class="has-dropdown">
+                        <a href="./About.html">About</a>
+                        <ul class="dropdown">
+                            <li><a href="./About.html#beliefs">Our Beliefs</a></li>
+                            <li><a href="./About.html#history">History</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#Our-Ministries">Ministries</a></li>
+                    <li><a href="#events">Events</a></li>
+                    <li><a href="#upcoming-events">Upcoming</a></li>
+                    <li><a href="#">Sermons</a></li>
+                    <li><a href="#" class="contact-link">Contact</a></li>
+                    <li><a href="#" class="donate-btn">Give</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-background">
+            <picture>
+                <source media="(max-width: 768px)" srcset="./background_image/l2CHZvv_bgujb2_c_scale,w_200.jpg">
+                <source media="(min-width: 769px)" srcset="./background_image/l2CHZvv_bgujb2_c_scale,w_640.jpg">
+                <img src="./background_image/l2CHZvv_bgujb2_c_scale,w_640.jpg" alt="Church worship service background">
+            </picture>
+        </div>
+        <div class="hero-content">
+            <h1>Welcome to Beautiful God Ministry</h1>
+            <p>Where faith, hope, and love come together in Christ</p>
+            <a href="#" class="cta-btn">Join Us This Sunday</a>
+        </div>
+    </section>
+
+    <section class="ministries" id="Our-Ministries">
+        <h2 class="section-title">Our Ministries</h2>
+        <div class="ministries-grid">
+            <div class="ministry-card">
+                <img 
+                    src="./OIP_1_qolhqa_c_scale,w_200.webp 200w" 
+                    srcset="./OIP_1_qolhqa/OIP_1_qolhqa_c_scale,w_200.webp 200w, ./OIP_1_qolhqa/OIP_1_qolhqa_c_scale,w_474.webp 400w"
+                    sizes="(max-width: 600px) 200px, (max-width: 900px) 300px, 400px"
+                    alt="Youth ministry" 
+                    loading="lazy">
+                <div class="ministry-content">
+                    <h3>Youth Ministry</h3>
+                    <p>Engaging programs for teens and young adults to grow in their faith.</p>
+                    <a href="#" class="donate-btn">Learn More</a>
+                </div>
+            </div>
+            <div class="ministry-card">
+                <img 
+                    src="./R_ialxwh_c_scale,w_200.png"
+                    srcset="./R_ialxwh/R_ialxwh_c_scale,w_200.png 200w, ./R_ialxwh/R_ialxwh_c_scale,w_505.png 505w, ./R_ialxwh/R_ialxwh_c_scale,w_826.png 826w, ./R_ialxwh/R_ialxwh_c_scale,w_1010.png 1010w"
+                    sizes="(max-width: 600px) 200px, (max-width: 900px) 300px, 400px"
+                    alt="Women's ministry" 
+                    loading="lazy">
+                <div class="ministry-content">
+                    <h3>Women's Ministry</h3>
+                    <p>Building sisterhood through Bible study and fellowship.</p>
+                    <a href="#" class="donate-btn">Learn More</a>
+                </div>
+            </div>
+            <div class="ministry-card">
+                <img 
+                    src="./R_1_j5eeph_c_scale,w_200.jpg"
+                    srcset="./R_1_j5eeph/R_1_j5eeph_c_scale,w_200.jpg 200w, ./R_1_j5eeph/R_1_j5eeph_c_scale,w_579.jpg 579w, ./R_1_j5eeph/R_1_j5eeph_c_scale,w_854.jpg 854w, ./R_1_j5eeph/R_1_j5eeph_c_scale,w_960.jpg 960w"
+                    sizes="(max-width: 600px) 200px, (max-width: 900px) 300px, 400px"
+                    alt="Missions" 
+                    loading="lazy">
+                <div class="ministry-content">
+                    <h3>Missions</h3>
+                    <p>Taking the gospel to communities around the world.</p>
+                    <a href="#" class="donate-btn">Learn More</a>
+                </div>
+            </div>
+            <div class="ministry-card">
+                <img 
+                    src="./5d0820fd3b8461b5544cb9162e77af96_1_rinwdp_c_scale,w_200.jpg"
+                    srcset="./5d0820fd3b8461b5544cb9162e77af96_1_rinwdp/5d0820fd3b8461b5544cb9162e77af96_1_rinwdp_c_scale,w_200.jpg 200w, ./5d0820fd3b8461b5544cb9162e77af96_1_rinwdp/5d0820fd3b8461b5544cb9162e77af96_1_rinwdp_c_scale,w_483.jpg 483w, ./5d0820fd3b8461b5544cb9162e77af96_1_rinwdp/5d0820fd3b8461b5544cb9162e77af96_1_rinwdp_c_scale,w_1024.jpg 1024w"
+                    sizes="(max-width: 600px) 200px, (max-width: 900px) 300px, 400px"
+                    alt="Worship team" 
+                    loading="lazy">
+                <div class="ministry-content">
+                    <h3>Worship Team</h3>
+                    <p>Leading the congregation in praise and worship.</p>
+                    <a href="#" class="donate-btn">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="events" id="events">
+        <div class="events-container">
+            <h2 class="section-title">Current Events</h2>
+            <div class="events-grid">
+                <div class="event-card">
+                    <div class="event-image">
+                        <img 
+                            src="./Chimmy_inohy8_c_scale,w_200.jpg"
+                            srcset="./Chimmy_inohy8_c/Chimmy_inohy8_c_scale,w_200.jpg 200w, ./Chimmy_inohy8_c/Chimmy_inohy8_c_scale,w_551.jpg 551w, ./Chimmy_inohy8_c/Chimmy_inohy8_c_scale,w_810.jpg 810w"
+                            sizes="(max-width: 600px) 200px, (max-width: 900px) 300px, 400px"
+                            alt="Pastor Moses Onyebuchi Okoh" 
+                            loading="lazy">
+                        <div class="event-date">May 25, 2025</div>
+                    </div>
+                    <div class="event-content">
+                        <h3>CHILDREN'S DAY</h3>
+                        <div class="event-meta">
+                            <div class="event-time">
+                                <i class="far fa-clock"></i> 7:00 AM
+                            </div>
+                            <div class="event-location">
+                                <i class="fas fa-map-marker-alt"></i> Igebedo Ojo, Lagos
+                            </div>
+                        </div>
+                        <div class="event-description">
+                            <p>A special day dedicated to our children with fun activities and spiritual nourishment.</p>
+                        </div>
+                        <a href="#" class="cta-btn">Register Now</a>
+                    </div>
+                </div>
+                
+                <div class="event-card">
+                    <div class="event-image">
+                        <img 
+                            src="./wp6246875_vnupee_c_scale,w_200.webp"
+                            srcset="./wp6246875_vnupee/wp6246875_vnupee_c_scale,w_200.webp 200w, ./wp6246875_vnupee/wp6246875_vnupee_c_scale,w_583.webp 583w, ./wp6246875_vnupee/wp6246875_vnupee_c_scale,w_1057.webp 1057w"
+                            sizes="(max-width: 600px) 200px, (max-width: 900px) 300px, 400px"
+                            alt="Bible Study" 
+                            loading="lazy">
+                        <div class="event-date">Every Wednesday</div>
+                    </div>
+                    <div class="event-content">
+                        <h3>Midweek Bible Study</h3>
+                        <div class="event-meta">
+                            <div class="event-time">
+                                <i class="far fa-clock"></i> 6:00 PM
+                            </div>
+                            <div class="event-location">
+                                <i class="fas fa-map-marker-alt"></i> Main Sanctuary
+                            </div>
+                        </div>
+                        <div class="event-description">
+                            <p>Join us for deep study of God's word and fellowship every Wednesday evening.</p>
+                        </div>
+                        <a href="#" class="cta-btn">Learn More</a>
+                    </div>
+                </div>
+                
+                <div class="event-card">
+                    <div class="event-image">
+                        <img 
+                            src="./WhatsApp_Image_2025-07-17_at_6.01.45_PM_1_mhnf7e_c_scale,w_200.jpg"
+                            srcset="./WhatsApp_Image_2025-07-17_at_6.01.45_PM_1_mhnf7e/WhatsApp_Image_2025-07-17_at_6.01.45_PM_1_mhnf7e_c_scale,w_200.jpg 200w, ./WhatsApp_Image_2025-07-17_at_6.01.45_PM_1_mhnf7e/WhatsApp_Image_2025-07-17_at_6.01.45_PM_1_mhnf7e_c_scale,w_763.jpg 763w, ./WhatsApp_Image_2025-07-17_at_6.01.45_PM_1_mhnf7e/WhatsApp_Image_2025-07-17_at_6.01.45_PM_1_mhnf7e_c_scale,w_898.jpg 898w, ./WhatsApp_Image_2025-07-17_at_6.01.45_PM_1_mhnf7e/WhatsApp_Image_2025-07-17_at_6.01.45_PM_1_mhnf7e_c_scale,w_1010.jpg 1010w"
+                            sizes="(max-width: 600px) 200px, (max-width: 900px) 300px, 400px"
+                            alt="Prayer Meeting" 
+                            loading="lazy">
+                        <div class="event-date">Every Friday</div>
+                    </div>
+                    <div class="event-content">
+                        <h3>Prayer & Fasting</h3>
+                        <div class="event-meta">
+                            <div class="event-time">
+                                <i class="far fa-clock"></i> 6:00 AM
+                            </div>
+                            <div class="event-location">
+                                <i class="fas fa-map-marker-alt"></i> Prayer Tower
+                            </div>
+                        </div>
+                        <div class="event-description">
+                            <p>Corporate prayer and fasting for spiritual growth and breakthroughs.</p>
+                        </div>
+                        <a href="#" class="cta-btn">Join Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="upcoming-events" id="upcoming-events">
+        <div class="upcoming-container">
+            <h2 class="section-title">Upcoming Events</h2>
+            <div class="upcoming-grid">
+                <div class="upcoming-card">
+                    <div class="upcoming-image">
+                        <img 
+                            src="./revelation-jesus-christ-jerusalem-bible-revelation-jesus-christ-jerusalem-bible-271832597_trijbc_c_scale,w_200.webp"
+                            srcset="./revelation-jesus-christ-jerusalem-bible-revelation-jesus-christ-jerusalem-bible-271832597_trijbc/revelation-jesus-christ-jerusalem-bible-revelation-jesus-christ-jerusalem-bible-271832597_trijbc_c_scale,w_200.webp 200w, ./revelation-jesus-christ-jerusalem-bible-revelation-jesus-christ-jerusalem-bible-271832597_trijbc/revelation-jesus-christ-jerusalem-bible-revelation-jesus-christ-jerusalem-bible-271832597_trijbc_c_scale,w_712.webp 712w, ./revelation-jesus-christ-jerusalem-bible-revelation-jesus-christ-jerusalem-bible-271832597_trijbc/revelation-jesus-christ-jerusalem-bible-revelation-jesus-christ-jerusalem-bible-271832597_trijbc_c_scale,w_800.webp 800w"
+                            sizes="(max-width: 600px) 200px, (max-width: 900px) 300px, 400px"
+                            alt="Annual Revival" 
+                            loading="lazy">
+                        <div class="upcoming-date">June 10-15, 2025</div>
+                    </div>
+                    <div class="upcoming-content">
+                        <h3>Annual Revival</h3>
+                        <div class="upcoming-meta">
+                            <div class="upcoming-time">
+                                <i class="far fa-clock"></i> 5:00 PM Daily
+                            </div>
+                            <div class="upcoming-location">
+                                <i class="fas fa-map-marker-alt"></i> Main Auditorium
+                            </div>
+                        </div>
+                        <div class="upcoming-description">
+                            <p>Five days of powerful revival meetings with guest ministers and special worship.</p>
+                        </div>
+                        <a href="#" class="cta-btn">More Info</a>
+                    </div>
+                </div>
+                
+                <div class="upcoming-card">
+                    <div class="upcoming-image">
+                        <img 
+                            src="./WhatsApp_Image_2025-07-17_at_6.01.45_PM_t2qlij_c_scale,w_200.jpg"
+                            srcset="./WhatsApp_Image_2025-07-17_at_6.01.45_PM_t2qlij/WhatsApp_Image_2025-07-17_at_6.01.45_PM_t2qlij_c_scale,w_200.jpg 200w, ./WhatsApp_Image_2025-07-17_at_6.01.45_PM_t2qlij/WhatsApp_Image_2025-07-17_at_6.01.45_PM_t2qlij_c_scale,w_532.jpg 532w, ./WhatsApp_Image_2025-07-17_at_6.01.45_PM_t2qlij/WhatsApp_Image_2025-07-17_at_6.01.45_PM_t2qlij_c_scale,w_838.jpg 838w, ./WhatsApp_Image_2025-07-17_at_6.01.45_PM_t2qlij/WhatsApp_Image_2025-07-17_at_6.01.45_PM_t2qlij_c_scale,w_914.jpg 914w"
+                            sizes="(max-width: 600px) 200px, (max-width: 900px) 300px, 400px"
+                            alt="Leadership Conference" 
+                            loading="lazy">
+                        <div class="upcoming-date">July 5-7, 2025</div>
+                    </div>
+                    <div class="upcoming-content">
+                        <h3>Leadership Conference</h3>
+                        <div class="upcoming-meta">
+                            <div class="upcoming-time">
+                                <i class="far fa-clock"></i> 9:00 AM - 5:00 PM
+                            </div>
+                            <div class="upcoming-location">
+                                <i class="fas fa-map-marker-alt"></i> Conference Hall
+                            </div>
+                        </div>
+                        <div class="upcoming-description">
+                            <p>Equipping leaders for effective ministry in the 21st century church.</p>
+                        </div>
+                        <a href="#" class="cta-btn">Register Now</a>
+                    </div>
+                </div>
+                
+                <div class="upcoming-card">
+                    <div class="upcoming-image">
+                        <img 
+                            src="./OIP_tuqxli_c_scale,w_200.webp"
+                            srcset="./OIP_tuqxli/OIP_tuqxli_c_scale,w_200.webp 200w, ./OIP_tuqxli/OIP_tuqxli_c_scale,w_474.webp 474w"
+                            sizes="(max-width: 600px) 200px, (max-width: 900px) 300px, 400px"
+                            alt="Mission Trip" 
+                            loading="lazy">
+                        <div class="upcoming-date">August 12-20, 2025</div>
+                    </div>
+                    <div class="upcoming-content">
+                        <h3>Mission Trip</h3>
+                        <div class="upcoming-meta">
+                            <div class="upcoming-time">
+                                <i class="far fa-clock"></i> All Day
+                            </div>
+                            <div class="upcoming-location">
+                                <i class="fas fa-map-marker-alt"></i> Rural Communities
+                            </div>
+                        </div>
+                        <div class="upcoming-description">
+                            <p>Join our mission team as we take the gospel to underserved communities.</p>
+                        </div>
+                        <a href="#" class="cta-btn">Sign Up</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-logo">BEAUTIFUL GOD MINISTRY INTERNATIONAL</div>
+        <div class="footer-links">
+            <a href="#">Service Times</a>
+            <a href="#" class="location-link">Location</a>
+            <a href="#" class="contact-link">Contact Us</a>
+            <a href="#">Privacy Policy</a>
+        </div>
+        <div class="social-links">
+            <a href="https://www.facebook.com/beautifulgodministry/" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com/beautifulgodministries.yolasit/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/@beautifulgodministryintl703" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="https://x.com/mosesbeautifulg" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        </div>
+        <p>&copy; <span id="current-year"></span> Beautiful God Ministry International. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuBtn = document.querySelector('.mobile-menu-btn');
+        const closeBtn = document.querySelector('.close-menu');
+        const nav = document.querySelector('nav');
+
+        menuBtn.addEventListener('click', () => {
+            nav.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        closeBtn.addEventListener('click', () => {
+            nav.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Dark mode toggle
+        const themeToggle = document.createElement('button');
+        themeToggle.textContent = '🌓';
+        themeToggle.setAttribute('aria-label', 'Toggle dark mode');
+        themeToggle.style.position = 'fixed';
+        themeToggle.style.bottom = '20px';
+        themeToggle.style.right = '20px';
+        themeToggle.style.zIndex = '1000';
+        themeToggle.style.background = 'var(--primary)';
+        themeToggle.style.color = 'white';
+        themeToggle.style.border = 'none';
+        themeToggle.style.borderRadius = '50%';
+        themeToggle.style.width = '50px';
+        themeToggle.style.height = '50px';
+        themeToggle.style.fontSize = '1.5rem';
+        themeToggle.style.cursor = 'pointer';
+        themeToggle.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
+        themeToggle.style.transition = 'all 0.3s ease';
+        
+        themeToggle.addEventListener('mouseenter', () => {
+            themeToggle.style.transform = 'scale(1.1)';
+        });
+        
+        themeToggle.addEventListener('mouseleave', () => {
+            themeToggle.style.transform = 'scale(1)';
+        });
+
+        document.body.appendChild(themeToggle);
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            
+            // Save preference to localStorage
+            localStorage.setItem('theme', newTheme);
+            
+            // Update button emoji
+            themeToggle.textContent = newTheme === 'light' ? '🌓' : '🌞';
+        });
+
+        // Check for saved theme preference
+        if (localStorage.getItem('theme')) {
+            const savedTheme = localStorage.getItem('theme');
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            themeToggle.textContent = savedTheme === 'light' ? '🌓' : '🌞';
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            themeToggle.textContent = '🌞';
+        }
+
+        // Update copyright year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Service worker registration for PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').then(registration => {
+                    console.log('ServiceWorker registration successful');
+                }).catch(err => {
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+            });
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Handle location link clicks
+        document.querySelectorAll('.location-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Address: 6, Beautiful God Close, Beautiful God Bus-Stop. Igbede, Ojo, Lagos Nigeria.');
+            });
+        });
+
+        // Handle contact link clicks
+        document.querySelectorAll('.contact-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Phone Number: +2347036075345 / +2347038859033 / +2348063449562');
+            });
+        });
+
+        // Handle navigation contact link
+        document.querySelectorAll('nav .contact-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Phone Number: +2347036075345 / +2347038859033 / +2348063449562');
+            });
+        });
+    </script>
+</body>
+</html>

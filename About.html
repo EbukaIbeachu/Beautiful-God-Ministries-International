@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="About Beautiful God Ministry International - Our history, beliefs, and leadership">
+    <title>About Us - Beautiful God Ministry International</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a4b8c;
+            --gold: #d4af37;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --font-base: clamp(1rem, 0.34vw + 0.91rem, 1.19rem);
+            --font-heading: clamp(1.5rem, 0.7vw + 1rem, 2.8rem);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-size: var(--font-base);
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: var(--font-heading);
+            font-weight: 700;
+            color: var(--gold);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .header-logo {
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 200px;
+            margin-right: 1rem;
+            object-fit: contain;
+        }
+
+        .mobile-menu-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            display: block;
+            transition: transform 0.2s ease;
+        }
+
+        .mobile-menu-btn:hover {
+            transform: scale(1.1);
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            height: 100vh;
+            background-color: var(--primary);
+            transition: right 0.3s ease;
+            padding: 2rem;
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        nav.active {
+            right: 0;
+        }
+
+        .close-menu {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .close-menu:hover {
+            transform: rotate(90deg);
+        }
+
+        .nav-links {
+            margin-top: 3rem;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-bottom: 1.5rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            display: block;
+            padding: 0.5rem 0;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .donate-btn {
+            background-color: var(--gold);
+            color: var(--primary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .donate-btn:hover {
+            background-color: #e8c252;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        /* About Page Specific Styles */
+        .about-container {
+            display: flex;
+            flex-direction: column;
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 1rem;
+        }
+
+        @media (min-width: 992px) {
+            .about-container {
+                flex-direction: row;
+            }
+        }
+
+        .about-content {
+            flex: 1;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-sidebar {
+            width: 100%;
+            padding: 2rem;
+        }
+
+        @media (min-width: 992px) {
+            .about-sidebar {
+                width: 400px;
+                padding-left: 0;
+            }
+        }
+
+        .about-sidebar-image {
+            width: 100%;
+            height: 500px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .about-sidebar-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .section-title {
+            text-align: center;
+            margin: 3rem 0;
+            font-size: var(--font-heading);
+            color: var(--primary);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--gold);
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        .beliefs-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .beliefs-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .belief-card {
+            background-color: rgba(26, 75, 140, 0.05);
+            padding: 2rem;
+            border-radius: 10px;
+            border-left: 5px solid var(--gold);
+        }
+
+        .belief-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .history-timeline {
+            position: relative;
+            padding-left: 50px;
+            margin: 3rem 0;
+        }
+
+        .history-timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--gold);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -43px;
+            top: 5px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 4px solid var(--gold);
+        }
+
+        .timeline-year {
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 2rem 1rem;
+            margin-top: auto;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .footer-links {
+                flex-direction: row;
+                justify-content: center;
+            }
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--gold);
+            transform: translateY(-3px);
+        }
+
+        @media (min-width: 1024px) {
+            .mobile-menu-btn {
+                display: none;
+            }
+
+            nav {
+                position: static;
+                width: auto;
+                height: auto;
+                background: transparent;
+                padding: 0;
+            }
+
+            .close-menu {
+                display: none;
+            }
+
+            .nav-links {
+                display: flex;
+                margin: 0;
+                gap: 1.5rem;
+                align-items: center;
+            }
+
+            .nav-links li {
+                margin: 0;
+                position: relative;
+            }
+
+            .nav-links a {
+                padding: 0.5rem 1rem;
+            }
+
+            .donate-btn {
+                margin: 0 0 0 1.5rem;
+            }
+
+            .has-dropdown:hover .dropdown {
+                display: block;
+                animation: fadeIn 0.3s ease;
+            }
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 100%;
+            background-color: white;
+            min-width: 250px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            border-radius: 0 0 5px 5px;
+            z-index: 100;
+        }
+
+        .dropdown a {
+            color: var(--dark);
+            padding: 0.75rem 1rem;
+            display: block;
+            border-bottom: 1px solid #eee;
+        }
+
+        .dropdown a:hover {
+            background-color: #f5f5f5;
+            color: var(--primary);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #121212;
+                color: #f1f1f1;
+            }
+
+            .about-content, .belief-card {
+                background-color: #1e1e1e;
+                color: #f1f1f1;
+            }
+
+            .belief-card h3 {
+                color: var(--gold);
+            }
+
+            .dropdown {
+                background-color: #2d2d2d;
+            }
+
+            .dropdown a {
+                color: #f1f1f1;
+                border-bottom-color: #444;
+            }
+
+            .dropdown a:hover {
+                background-color: #3d3d3d;
+                color: var(--gold);
+            }
+        }
+
+        [data-theme="dark"] {
+            background-color: #121212;
+            color: #f1f1f1;
+        }
+
+        [data-theme="dark"] .about-content,
+        [data-theme="dark"] .belief-card {
+            background-color: #1e1e1e;
+        }
+
+        [data-theme="dark"] .belief-card h3 {
+            color: var(--gold);
+        }
+
+        [data-theme="dark"] .dropdown {
+            background-color: #2d2d2d;
+        }
+
+        [data-theme="dark"] .dropdown a {
+            color: #f1f1f1;
+            border-bottom-color: #444;
+        }
+
+        [data-theme="dark"] .dropdown a:hover {
+            background-color: #3d3d3d;
+            color: var(--gold);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <img
+                src="logo-removebg-preview_gihvpx_c_scale,w_382.png"
+                srcset="
+                    logo/logo-removebg-preview_gihvpx_c_scale,w_200.png 200w,
+                    logo/logo-removebg-preview_gihvpx_c_scale,w_288.png 288w,
+                    logo/logo-removebg-preview_gihvpx_c_scale,w_357.png 357w,
+                    logo/logo-removebg-preview_gihvpx_c_scale,w_382.png 382w"
+                sizes="(max-width: 600px) 150px, (max-width: 900px) 200px, 250px"
+                alt="Beautiful God Ministry International Logo"
+                class="header-logo"
+                loading="eager"
+            >
+            <div class="logo">BEAUTIFUL GOD MINISTRY INTERNATIONAL</div>
+            <button class="mobile-menu-btn" aria-label="Open menu">☰</button>
+            <nav id="mainNav">
+                <button class="close-menu" aria-label="Close menu">×</button>
+                <ul class="nav-links">
+                    <li><a href="Index.html">Home</a></li>
+                    <li class="has-dropdown">
+                        <a href="About.html">About</a>
+                        <ul class="dropdown">
+                            <li><a href="About.html#beliefs">Our Beliefs</a></li>
+                            <li><a href="About.html#history">History</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="Index.html#Our-Ministries">Ministries</a></li>
+                    <li><a href="Index.html#events">Events</a></li>
+                    <li><a href="Index.html#upcoming-events">Upcoming</a></li>
+                    <li><a href="#">Sermons</a></li>
+                    <li><a href="#" class="contact-link">Contact</a></li>
+                    <li><a href="#" class="donate-btn">Give</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="about-container">
+        <main class="about-content">
+            <section id="our-story">
+                <h2 class="section-title">Our Story</h2>
+                <p>Beautiful God Ministry International was founded in 2005 with a vision to create a place of worship where people from all walks of life could encounter the transformative power of God's love. What began as a small gathering in a living room has grown into a vibrant community impacting lives across Nigeria and beyond.</p>
+                <p>Our journey has been marked by God's faithfulness through every season. From our humble beginnings to establishing multiple campuses, we've remained committed to our core mission: to lead people into a growing relationship with Jesus Christ through authentic worship, biblical teaching, and compassionate service.</p>
+            </section>
+
+            <section id="beliefs">
+                <h2 class="section-title">Our Beliefs</h2>
+                <div class="beliefs-grid">
+                    <div class="belief-card">
+                        <h3>The Bible</h3>
+                        <p>We believe the Bible is the inspired, infallible Word of God and the final authority for faith and life. All scripture is given by inspiration of God and is profitable for doctrine, reproof, correction, and instruction in righteousness.</p>
+                    </div>
+                    <div class="belief-card">
+                        <h3>The Trinity</h3>
+                        <p>We believe in one God eternally existing in three persons: Father, Son, and Holy Spirit. Each person of the Trinity is fully God, equal in power and glory, executing distinct but harmonious offices in creation and redemption.</p>
+                    </div>
+                    <div class="belief-card">
+                        <h3>Salvation</h3>
+                        <p>We believe salvation is by grace alone through faith in Jesus Christ. No one can earn salvation through good works; it is a free gift of God received by confessing with your mouth that Jesus is Lord and believing in your heart that God raised Him from the dead.</p>
+                    </div>
+                    <div class="belief-card">
+                        <h3>The Church</h3>
+                        <p>We believe the Church is the body of Christ on earth, empowered by the Holy Spirit to continue Jesus' mission of seeking and saving the lost. The local church exists to worship God, edify believers, and evangelize the world.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="history">
+                <h2 class="section-title">Our History</h2>
+                <div class="history-timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">2005</div>
+                        <p>Beautiful God Ministry was founded by Pastor Moses Onyebuchi Okoh with just 12 members meeting in a small apartment in Lagos.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2008</div>
+                        <p>Purchased our first property and built the initial sanctuary with seating capacity for 300 worshippers.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2012</div>
+                        <p>Launched our first outreach program, feeding and clothing over 500 families in the local community.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2015</div>
+                        <p>Expanded to our current location with a new sanctuary seating 1,500 people and launched our first branch church.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2020</div>
+                        <p>Established Beautiful God Ministry International with affiliate churches in three countries and launched our online ministry platform.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <aside class="about-sidebar">
+            <div class="about-sidebar-image">
+                <img 
+                    src="Pastor_Onyebuchi_rqspvj_c_scale,w_200.jpg"
+                    srcset="Pastor_Onyebuchi_rqspvj/Pastor_Onyebuchi_rqspvj_c_scale,w_200.jpg 200w, Pastor_Onyebuchi_rqspvj/Pastor_Onyebuchi_rqspvj_c_scale,w_319.jpg 319w"
+                    sizes="(max-width: 600px) 200px, (max-width: 900px) 300px, 400px"
+                    alt="Pastor Moses Onyebuchi Okoh"
+                    loading="lazy">
+            </div>
+            <div style="margin-top: 2rem; background-color: rgba(26, 75, 140, 0.05); padding: 2rem; border-radius: 10px;">
+                <h3 style="color: var(--primary); margin-bottom: 1rem;">Our Mission</h3>
+                <p>To glorify God by making disciples of all nations through the proclamation of the gospel, the teaching of God's Word, and the demonstration of Christ's love.</p>
+            </div>
+            <div style="margin-top: 2rem; background-color: rgba(26, 75, 140, 0.05); padding: 2rem; border-radius: 10px;">
+                <h3 style="color: var(--primary); margin-bottom: 1rem;">Our Vision</h3>
+                <p>To be a multicultural community of believers who worship passionately, serve selflessly, and reach our world with the transforming message of Jesus Christ.</p>
+            </div>
+            <div style="margin-top: 2rem; background-color: rgba(26, 75, 140, 0.05); padding: 2rem; border-radius: 10px;">
+                <h3 style="color: var(--primary); margin-bottom: 1rem;">Core Values</h3>
+                <ul style="padding-left: 1.5rem;">
+                    <li style="margin-bottom: 0.5rem;">Biblical Authority</li>
+                    <li style="margin-bottom: 0.5rem;">Authentic Worship</li>
+                    <li style="margin-bottom: 0.5rem;">Intentional Discipleship</li>
+                    <li style="margin-bottom: 0.5rem;">Compassionate Outreach</li>
+                    <li style="margin-bottom: 0.5rem;">Genuine Community</li>
+                </ul>
+            </div>
+        </aside>
+    </div>
+
+    <footer>
+        <div class="footer-logo">BEAUTIFUL GOD MINISTRY INTERNATIONAL</div>
+        <div class="footer-links">
+            <a href="#">Service Times</a>
+            <a href="#" class="location-link">Location</a>
+            <a href="#" class="contact-link">Contact Us</a>
+            <a href="#">Privacy Policy</a>
+        </div>
+        <div class="social-links">
+            <a href="https://www.facebook.com/beautifulgodministry/" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com/beautifulgodministries.yolasit/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/@beautifulgodministryintl703" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="https://x.com/mosesbeautifulg" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        </div>
+        <p>&copy; <span id="current-year"></span> Beautiful God Ministry International. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuBtn = document.querySelector('.mobile-menu-btn');
+        const closeBtn = document.querySelector('.close-menu');
+        const nav = document.querySelector('nav');
+
+        menuBtn.addEventListener('click', () => {
+            nav.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        closeBtn.addEventListener('click', () => {
+            nav.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Dark mode toggle
+        const themeToggle = document.createElement('button');
+        themeToggle.textContent = '🌓';
+        themeToggle.setAttribute('aria-label', 'Toggle dark mode');
+        themeToggle.style.position = 'fixed';
+        themeToggle.style.bottom = '20px';
+        themeToggle.style.right = '20px';
+        themeToggle.style.zIndex = '1000';
+        themeToggle.style.background = 'var(--primary)';
+        themeToggle.style.color = 'white';
+        themeToggle.style.border = 'none';
+        themeToggle.style.borderRadius = '50%';
+        themeToggle.style.width = '50px';
+        themeToggle.style.height = '50px';
+        themeToggle.style.fontSize = '1.5rem';
+        themeToggle.style.cursor = 'pointer';
+        themeToggle.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
+        themeToggle.style.transition = 'all 0.3s ease';
+        
+        themeToggle.addEventListener('mouseenter', () => {
+            themeToggle.style.transform = 'scale(1.1)';
+        });
+        
+        themeToggle.addEventListener('mouseleave', () => {
+            themeToggle.style.transform = 'scale(1)';
+        });
+
+        document.body.appendChild(themeToggle);
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            
+            // Save preference to localStorage
+            localStorage.setItem('theme', newTheme);
+            
+            // Update button emoji
+            themeToggle.textContent = newTheme === 'light' ? '🌓' : '🌞';
+        });
+
+        // Check for saved theme preference
+        if (localStorage.getItem('theme')) {
+            const savedTheme = localStorage.getItem('theme');
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            themeToggle.textContent = savedTheme === 'light' ? '🌓' : '🌞';
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            themeToggle.textContent = '🌞';
+        }
+
+        // Update copyright year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Handle location link clicks
+        document.querySelectorAll('.location-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Address: 6, Beautiful God Close, Beautiful God Bus-Stop. Igbede, Ojo, Lagos Nigeria.');
+            });
+        });
+
+        // Handle contact link clicks
+        document.querySelectorAll('.contact-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Phone Number: +2347036075345 / +2347038859033 / +2348063449562');
+            });
+        });
+
+        // Handle navigation contact link
+        document.querySelectorAll('nav a.contact-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Phone Number: +2347036075345 / +2347038859033 / +2348063449562');
+            });
+        });
+    </script>
+</body>
+</html>
